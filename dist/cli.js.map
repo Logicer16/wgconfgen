@@ -1,0 +1,1 @@
+{"version":3,"file":"cli.js","sourceRoot":"","sources":["../src/cli.ts"],"names":[],"mappings":";AACA;;GAEG;AAEH;;;;GAIG;AACH,MAAM,UAAU,GAAG,CAAC,GAAG,OAAiB;IACtC,OAAO,OAAO,CAAC,MAAM,CAAC,CAAC,WAAW,EAAE,YAAY,EAAE,EAAE;QAClD,OAAO,WAAW,GAAG,YAAY,CAAC;IACpC,CAAC,CAAC,CAAC;AACL,CAAC"}

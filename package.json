@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "wgconfgen",
+  "version": "0.0.1",
+  "description": "WireGuard Config Generator",
+  "keywords": [
+    "wireguard",
+    "wg",
+    "vpn",
+    "wg-quick",
+    "networking"
+  ],
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.js",
+  "bin": {
+    "wgconfgen": "dist/cli.js"
+  },
+  "scripts": {
+    "preinstall": "pnpx only-allow pnpm",
+    "build": "tsc",
+    "start": "tsc && node dist/index.js",
+    "style": "npm run lint && npm run prettier",
+    "lint": "eslint . --fix --cache",
+    "lint:ci": "eslint . --cache",
+    "prettier": "prettier --write .",
+    "prettier:ci": "prettier --check .",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "type-coverage": "type-coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Logicer16/wgconfgen.git"
+  },
+  "author": "logicer",
+  "license": "NIT",
+  "bugs": {
+    "url": "https://github.com/Logicer16/wgconfgen/issues"
+  },
+  "homepage": "https://github.com/Logicer16/wgconfgen#readme",
+  "engines": {
+    "node": "^20.10.0",
+    "pnpm": ">=8.10.0"
+  },
+  "devDependencies": {
+    "@logicer/eslint-plugin": "^4.0.3",
+    "@logicer/prettier-config": "^2.1.0",
+    "@logicer/tsconfig": "^5.0.1",
+    "@types/eslint": "8",
+    "@types/node": "^22.9.1",
+    "@vitest/coverage-v8": "^2.1.5",
+    "eslint": "^8.57.1",
+    "eslint-import-resolver-typescript": "^3.6.3",
+    "prettier": "^3.3.3",
+    "ts-plugin-type-coverage": "^2.29.7",
+    "type-coverage": "^2.29.7",
+    "typescript": "~5.4.5",
+    "vitest": "^2.1.5"
+  },
+  "typeCoverage": {
+    "atLeast": 100,
+    "cache": true,
+    "strict": true,
+    "ignoreCatch": true,
+    "reportSemanticError": true
+  },
+  "packageManager": "pnpm@8.15.4+sha256.cea6d0bdf2de3a0549582da3983c70c92ffc577ff4410cbf190817ddc35137c2"
+}
