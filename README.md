@@ -11,22 +11,22 @@ Generate WireGuard configs for use in advanced deployments.
 
 ## Features
 
-- [] Automatic key generation
-  - [] Private keys
-  - [] Preshared keys
-- [] Multi-peer (mesh) deployments
-- [] Import existing configs
-- [] Per peer customisation
-- [] Describe your deployment in:
-  - [] yaml
-  - [] toml
-  - [] json
-- [] Export to:
-  - [] `wg-quick`
-  - [] `systemd-networkd`
-  - [] `Netctl`
-  - [] `NetworkManager`
-- [] Type safe API
+- [ ] Automatic key generation
+  - [ ] Private keys
+  - [ ] Preshared keys
+- [ ] Multi-peer (mesh) deployments
+- [ ] Import existing configs
+- [ ] Per peer customisation
+- [ ] Describe your deployment in:
+  - [ ] yaml
+  - [ ] toml
+  - [ ] json
+- [ ] Export to:
+  - [ ] `wg-quick`
+  - [ ] `systemd-networkd`
+  - [ ] `Netctl`
+  - [ ] `NetworkManager`
+- [ ] Type safe API
 
 ## Install
 
