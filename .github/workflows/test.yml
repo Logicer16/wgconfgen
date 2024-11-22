@@ -59,6 +59,9 @@ jobs:
       - name: Run Prettier
         run: pnpm prettier:ci
 
+      - name: Type Coverage
+        run: pnpm type-coverage
+
   Test:
     runs-on: ubuntu-latest
 
