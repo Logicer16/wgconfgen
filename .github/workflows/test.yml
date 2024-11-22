@@ -90,17 +90,18 @@ jobs:
 
       - name: Test with vitest
         if: ${{ !cancelled() }}
-        run: pnpm run test --reporter junit --outputFile ./coverage/junit.xml
+        run: pnpm run test --coverage --reporter junit --outputFile ./coverage/junit.xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
+          fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/junit.xml
 
       - name: Upload test results to Codecov
         if: ${{ !cancelled() }}
         uses: codecov/test-results-action@v1
         with:
+          fail_ci_if_error: true
           files: ./coverage/junit.xml
           token: ${{ secrets.CODECOV_TOKEN }}
