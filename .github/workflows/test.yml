@@ -12,8 +12,6 @@ jobs:
       node-version: ${{ steps.create-node-matrix.outputs.matrix }}
 
     steps:
-      - uses: actions/checkout@v4
-
       - name: Create Node Version Matrix
         id: create-node-matrix
         run: |
