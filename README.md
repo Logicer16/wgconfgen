@@ -36,4 +36,4 @@ npx wgconfgen
 
 ## Usage
 
-*Coming Soon*
+_Coming Soon_

@@ -1,4 +1,0 @@
-/**
- * @file Export API.
- */
-export {};

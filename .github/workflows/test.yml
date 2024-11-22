@@ -21,7 +21,7 @@ jobs:
   Style:
     runs-on: ubuntu-latest
 
-    needs: [ GenerateMatrix ]
+    needs: [GenerateMatrix]
     strategy:
       matrix:
         node-version: ${{ fromJson(needs.GenerateMatrix.outputs.node-version) }}
@@ -44,7 +44,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-
       - name: Run ESLint
         run: pnpm lint:ci --output-file .eslint_report.json --format json
         continue-on-error: true
@@ -60,11 +59,10 @@ jobs:
       - name: Run Prettier
         run: pnpm prettier:ci
 
-
   Test:
     runs-on: ubuntu-latest
 
-    needs: [ GenerateMatrix ]
+    needs: [GenerateMatrix]
     strategy:
       matrix:
         node-version: ${{ fromJson(needs.GenerateMatrix.outputs.node-version) }}
