@@ -5,5 +5,5 @@
     "allowImportingTsExtensions": true,
     "noEmit": true
   },
-  "include": [".prettierrc.js", "eslint.config.js", "vitest.config.ts"]
+  "include": [".prettierrc.js", "eslint.config.js", "vitest.config.ts", "vite.config.ts"]
 }

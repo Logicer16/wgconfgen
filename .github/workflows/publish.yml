@@ -3,6 +3,14 @@ on:
   release:
     types: [published]
 jobs:
+  Test:
+    uses: ./.github/workflows/test.yml
+    permissions:
+      checks: write
+    with:
+      report: false
+    secrets: inherit
+
   Publish:
     runs-on: ubuntu-latest
     permissions:
@@ -21,12 +29,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-
-      - name: Run ESLint
-        run: pnpm lint:ci
-
-      - name: Run Prettier
-        run: pnpm prettier:ci
 
       - name: Publish to npm
         run: pnpm publish --access public --no-git-checks

@@ -2,7 +2,18 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@logicer/tsconfig",
   "compilerOptions": {
-		"outDir": "./dist"
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ESNext"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
 	},
   "include": [
     "./src/**/*"

@@ -18,15 +18,16 @@
   },
   "scripts": {
     "preinstall": "pnpx only-allow pnpm",
-    "build": "tsc",
-    "start": "tsc && node dist/index.js",
+    "build": "vite build",
     "style": "npm run lint && npm run prettier",
     "lint": "eslint . --fix --cache",
     "lint:ci": "eslint . --cache",
     "prettier": "prettier --write .",
     "prettier:ci": "prettier --check .",
-    "test": "vitest",
+    "test": "pnpm run tsc && pnpm run test:ci",
+    "test:ci": "vitest",
     "coverage": "vitest run --coverage",
+    "tsc": "tsc",
     "type-coverage": "type-coverage"
   },
   "repository": {
@@ -40,7 +41,7 @@
   },
   "homepage": "https://github.com/Logicer16/wgconfgen#readme",
   "engines": {
-    "node": "^20.10.0",
+    "node": "^20.11.0",
     "pnpm": ">=8.10.0"
   },
   "devDependencies": {
@@ -56,6 +57,9 @@
     "ts-plugin-type-coverage": "^2.29.7",
     "type-coverage": "^2.29.7",
     "typescript": "~5.4.5",
+    "vite": "^5.4.11",
+    "vite-plugin-dts": "^4.3.0",
+    "vite-plugin-externalize-deps": "^0.8.0",
     "vitest": "^2.1.5"
   },
   "typeCoverage": {
@@ -65,5 +69,8 @@
     "ignoreCatch": true,
     "reportSemanticError": true
   },
-  "packageManager": "pnpm@8.15.4+sha256.cea6d0bdf2de3a0549582da3983c70c92ffc577ff4410cbf190817ddc35137c2"
+  "packageManager": "pnpm@8.15.4+sha256.cea6d0bdf2de3a0549582da3983c70c92ffc577ff4410cbf190817ddc35137c2",
+  "dependencies": {
+    "yaml": "^2.6.1"
+  }
 }

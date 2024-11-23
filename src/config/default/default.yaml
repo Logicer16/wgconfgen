@@ -1,0 +1,7 @@
+root:
+  key: value
+  array:
+    - true
+    - false
+    - ""
+    - 3

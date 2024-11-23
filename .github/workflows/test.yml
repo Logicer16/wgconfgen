@@ -3,6 +3,11 @@ name: Test
 on:
   push: {}
   pull_request: {}
+  workflow_call:
+    inputs:
+      report:
+        default: true
+        type: boolean
 
 jobs:
   GenerateMatrix:
@@ -49,6 +54,7 @@ jobs:
         continue-on-error: true
 
       - name: Annotate ESLint Results
+        if: ${{ inputs.report }}
         uses: ataylorme/eslint-annotate-action@v3
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
@@ -91,18 +97,22 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Type Check
+        run: pnpm tsc
+
       - name: Test with vitest
         if: ${{ !cancelled() }}
-        run: pnpm run test --coverage --reporter junit --outputFile ./coverage/junit.xml
+        run: pnpm run test:ci --coverage --reporter junit --outputFile ./coverage/junit.xml
 
       - name: Upload coverage to Codecov
+        if: ${{ inputs.report }}
         uses: codecov/codecov-action@v5
         with:
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload test results to Codecov
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && inputs.report }}
         uses: codecov/test-results-action@v1
         with:
           fail_ci_if_error: true
