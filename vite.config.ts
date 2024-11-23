@@ -2,8 +2,10 @@
  * @file Vite config.
  */
 /// <reference types="vitest/config" />
+import {codecovVitePlugin} from "@codecov/vite-plugin";
 import {defineConfig} from "vite";
 import {externalizeDeps} from "vite-plugin-externalize-deps";
+import process from "node:process";
 import {resolve} from "node:path";
 import vitePluginDTS from "vite-plugin-dts";
 
@@ -37,8 +39,11 @@ export default defineConfig({
         declarationMap: true
       },
       exclude: "**/*.test.*"
-
-      // rollupTypes: true
+    }),
+    codecovVitePlugin({
+      bundleName: "wgconfgen",
+      enableBundleAnalysis: process.env.CODECOV_TOKEN !== undefined,
+      uploadToken: process.env.CODECOV_TOKEN
     })
   ],
   test: {
