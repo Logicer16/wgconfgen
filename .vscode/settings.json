@@ -7,5 +7,6 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "markdown.extension.toc.levels": "2..6",
   "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": ["wgconfgen", "vite", "vitest"]
+  "cSpell.words": ["wgconfgen", "vite", "vitest"],
+  "typescript.preferences.importModuleSpecifierEnding": "js"
 }
