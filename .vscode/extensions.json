@@ -2,6 +2,7 @@
   "recommendations": [
     "dbaeumer.vscode-eslint",
     "codezombiech.gitignore",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "vitest.explorer"
   ]
 }
