@@ -13,6 +13,7 @@ on:
 
 env:
   report: ${{ github.event_name != 'workflow_call' || inputs.report }}
+  dependabot: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
 
 jobs:
   GenerateMatrix:
@@ -110,14 +111,14 @@ jobs:
         run: pnpm run test:ci --coverage --reporter junit --outputFile ./coverage/junit.xml
 
       - name: Upload coverage to Codecov
-        if: ${{ env.report }}
+        if: ${{ env.report && !env.dependabot }}
         uses: codecov/codecov-action@v5
         with:
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload test results to Codecov
-        if: ${{ !cancelled() && env.report }}
+        if: ${{ !cancelled() && env.report && !env.dependabot }}
         uses: codecov/test-results-action@v1
         with:
           fail_ci_if_error: true
