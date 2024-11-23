@@ -1,7 +1,9 @@
 name: Test
 
 on:
-  push: {}
+  push:
+    branches-ignore:
+      - dependabot/**
   pull_request: {}
   workflow_call:
     inputs:
