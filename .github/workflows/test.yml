@@ -13,29 +13,37 @@ on:
 
 env:
   report: ${{ github.event_name != 'workflow_call' || inputs.report }}
-  dependabot: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
+  notDependabot: ${{ github.event_name != 'pull_request' && github.event.pull_request.user.login != 'dependabot[bot]' }}
 
 jobs:
-  GenerateMatrix:
+  Prepare:
     runs-on: ubuntu-latest
 
     outputs:
-      node-version: ${{ steps.create-node-matrix.outputs.matrix }}
+      matrix: ${{ steps.create-matrix.outputs.matrix }}
+      should-skip: ${{ steps.skip-check.outputs.should_skip }}
 
     steps:
-      - name: Create Node Version Matrix
-        id: create-node-matrix
+      - name: Create Matrix
+        id: create-matrix
         run: |
-          NODE_VERSIONS="['20.x']"
-          echo "matrix=$NODE_VERSIONS" >> "$GITHUB_OUTPUT"
+          MATRIX="{'node-version':['20.x']}"
+          echo "matrix=$MATRIX" >> "$GITHUB_OUTPUT"
+
+      - id: skip-check
+        uses: fkirc/skip-duplicate-actions@v5
+        with:
+          concurrent_skipping: "same_content_newer"
+          skip_after_successful_duplicate: "true"
+          do_not_skip: '["pull_request", "workflow_dispatch", "schedule"]'
 
   Style:
     runs-on: ubuntu-latest
 
-    needs: [GenerateMatrix]
+    needs: [Prepare]
+    if: needs.Prepare.outputs.should-skip != 'true'
     strategy:
-      matrix:
-        node-version: ${{ fromJson(needs.GenerateMatrix.outputs.node-version) }}
+      matrix: ${{ fromJson(needs.Prepare.outputs.matrix) }}
 
     permissions:
       checks: write
@@ -77,10 +85,10 @@ jobs:
   Test:
     runs-on: ubuntu-latest
 
-    needs: [GenerateMatrix]
+    needs: [Prepare]
+    if: needs.Prepare.outputs.should-skip != 'true'
     strategy:
-      matrix:
-        node-version: ${{ fromJson(needs.GenerateMatrix.outputs.node-version) }}
+      matrix: ${{ fromJson(needs.Prepare.outputs.matrix) }}
 
     permissions:
       checks: write
@@ -111,14 +119,14 @@ jobs:
         run: pnpm run test:ci --coverage --reporter junit --outputFile ./coverage/junit.xml
 
       - name: Upload coverage to Codecov
-        if: ${{ env.report && !env.dependabot }}
+        if: ${{ env.report && env.notDependabot }}
         uses: codecov/codecov-action@v5
         with:
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload test results to Codecov
-        if: ${{ !cancelled() && env.report && !env.dependabot }}
+        if: ${{ !cancelled() && env.report && env.notDependabot }}
         uses: codecov/test-results-action@v1
         with:
           fail_ci_if_error: true
