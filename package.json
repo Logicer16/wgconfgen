@@ -57,7 +57,7 @@
     "prettier": "^3.3.3",
     "ts-plugin-type-coverage": "^2.29.7",
     "type-coverage": "^2.29.7",
-    "typescript": "~5.4.5",
+    "typescript": "~5.7.2",
     "vite": "^5.4.11",
     "vite-plugin-dts": "^4.3.0",
     "vite-plugin-externalize-deps": "^0.8.0",
