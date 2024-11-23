@@ -1,6 +1,7 @@
 /**
  * @file Vite config.
  */
+/// <reference types="vitest/config" />
 import {defineConfig} from "vite";
 import {externalizeDeps} from "vite-plugin-externalize-deps";
 import {resolve} from "node:path";
