@@ -50,7 +50,7 @@
     "@logicer/prettier-config": "^2.1.0",
     "@logicer/tsconfig": "^5.0.1",
     "@types/eslint": "8",
-    "@types/node": "^22.9.1",
+    "@types/node": "^22.10.1",
     "@vitest/coverage-v8": "^2.1.5",
     "eslint": "^8.57.1",
     "eslint-import-resolver-typescript": "^3.6.3",
