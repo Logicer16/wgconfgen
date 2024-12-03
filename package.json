@@ -45,7 +45,7 @@
     "pnpm": ">=8.10.0"
   },
   "devDependencies": {
-    "@codecov/vite-plugin": "^1.4.0",
+    "@codecov/vite-plugin": "^1.5.0",
     "@logicer/eslint-plugin": "^4.0.3",
     "@logicer/prettier-config": "^2.1.0",
     "@logicer/tsconfig": "^5.0.1",
