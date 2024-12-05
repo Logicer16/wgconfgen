@@ -54,7 +54,7 @@
     "@vitest/coverage-v8": "^2.1.5",
     "eslint": "^8.57.1",
     "eslint-import-resolver-typescript": "^3.6.3",
-    "prettier": "^3.3.3",
+    "prettier": "^3.4.2",
     "ts-plugin-type-coverage": "^2.29.7",
     "type-coverage": "^2.29.7",
     "typescript": "~5.4.5",
